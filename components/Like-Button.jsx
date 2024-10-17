@@ -13,7 +13,7 @@ export function LikeButton({ start = 0, step = 1, big, color, bordered = false }
   return <><button
     style={style}
     onClick={() => setLike(prev => +step + prev)}
-    onContextMenu={event => {event.preventDefault();setBorder(prev => !prev);}}
+    onContextMenu={event => { event.preventDefault(); setBorder(prev => !prev); }}
   >
     Like: {like}
   </button>

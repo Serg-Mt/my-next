@@ -4,7 +4,9 @@ import Link from 'next/link'
 const
   pages = [
     { href: '/', name: 'Home' },
-    { href: '/like-buttons', name: 'Like-buttons demo' }
+    { href: '/like-buttons', name: 'Like-buttons demo' },
+    { href: '/stand', name: 'lifecycle-methods' },
+    { href: '/users', name: 'JJSON Placeholder Users' }
   ]
 
 export function Header() {
