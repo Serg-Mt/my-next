@@ -4,9 +4,11 @@ import Link from 'next/link'
 const
   pages = [
     { href: '/', name: 'Home' },
+    { href: '/todo-class', name: 'ToDo (class)' },   
     { href: '/like-buttons', name: 'Like-buttons demo' },
     { href: '/stand', name: 'lifecycle-methods' },
-    { href: '/users', name: 'JJSON Placeholder Users' }
+    { href: '/users', name: 'JJSON Placeholder Users' },
+    { href: '/todo-opt', name: 'ToDo (optimization)' },
   ]
 
 export function Header() {

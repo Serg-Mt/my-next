@@ -1,4 +1,3 @@
-import { ToDo } from '@/components/ToDo';
 import Head from "next/head";
 
 export default function Home() {
@@ -11,8 +10,6 @@ export default function Home() {
     </Head>
     <main>
       Hello NextJS!
-      <hr />
-      <ToDo />
     </main>
   </>;
 }
