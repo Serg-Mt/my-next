@@ -9,6 +9,7 @@ const
     { href: '/stand', name: 'lifecycle-methods' },
     { href: '/users', name: 'JJSON Placeholder Users' },
     { href: '/todo-opt', name: 'ToDo (optimization)' },
+    { href: '/calendar', name: 'Calendar' },
   ]
 
 export function Header() {

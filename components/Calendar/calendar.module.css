@@ -1,0 +1,20 @@
+table.calendar {
+  /* background-color: aqua; */
+  border-collapse: collapse;
+
+  & td {
+    border: 1px solid lavenderblush;
+    text-align: center;
+    cursor: pointer;
+
+    &:nth-child(6),
+    &:nth-child(7) {
+      color: red;
+    }
+  }
+
+  & .selected {
+    background-color: lime;
+    border-radius: 50%;
+  }
+}
