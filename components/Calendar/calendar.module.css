@@ -11,10 +11,50 @@ table.calendar {
     &:nth-child(7) {
       color: red;
     }
-  }
 
-  & .selected {
-    background-color: lime;
-    border-radius: 50%;
+    &.selected {
+      background-color: lime;
+      border-radius: 50%;
+    }
   }
+}
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+.center {
+  align-items: center;
+}
+
+
+.noselected {
+  & tbody tr td.selected {
+    background-color: unset;
+    border-radius: unset
+  }
+}
+
+table.nocaption{
+  & caption {
+    display: none;
+  }
+}
+
+.popup {
+  position: absolute;
+  box-shadow: 0 0 12px 2px gray;
+  background-color: whitesmoke;
+}
+
+.dateindicator{
+  border: 1px solid gray;
+  width: 6em;
+  &::after {
+    content: '📆';
+  }
+}
+
+.close {
+  position: absolute;
+  right: 0;
 }
