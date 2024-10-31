@@ -4,7 +4,7 @@ import { ObjTable } from '.';
 
 export function TestObjTable() {
   return <>
-    {/* <Test1 /> */}
+    <Test1 />
     <Test2 />
   </>
 }
@@ -39,15 +39,26 @@ function Test2() {
 function Test1() {
   const
     [users, setUsers] = useState(null),
+    [selected, setSelected] = useState(null),
     columns = [
+      // { title: 'site', content:({ website })=> website},
+      { title: '', content: user => String(user.id) == selected ? '✔' : '' },
       { title: 'Id', content: user => +user.id },
+      // { title: '', content: user => <button onClick={null}>select</button> },
       { title: 'Name', content: ({ name }) => name },
-      { title: 'Phone', content: ({ phone }) => <a href={'tel:phone'}>{phone}</a> },
+      { title: 'Phone', content: ({ phone }) => <a href={'tel:phone'}>{phone}</a>, getData: ({ phone }) => phone },
       { title: 'Email', content: ({ email }) => <Email email={email} /> },
       { title: 'address', content: (({ address }) => <MapLink geo={address.geo} text={`${address.city} ${address.street} ${address.suite}`} />) }
 
     ];
-  return <fieldset>
+  return <fieldset onClick={event => {
+    const
+      id = event.target.closest('tbody tr[data-id]')?.dataset?.id;
+    if (id == selected)
+      setSelected(null)
+    else
+      setSelected(id);
+  }}>
     <Fetcher
       url="https://jsonplaceholder.typicode.com/users"
       setData={setUsers}
