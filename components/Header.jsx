@@ -10,7 +10,8 @@ const
     { href: '/users', name: 'JJSON Placeholder Users' },
     { href: '/todo-opt', name: 'ToDo (optimization)' },
     { href: '/calendar', name: 'Calendar' },
-    { href: '/fetcher', name: 'Fetcher' }
+    { href: '/fetcher', name: 'Fetcher' },
+    { href: '/obj-table', name: 'ObjTable' },
   ]
 
 export function Header() {
