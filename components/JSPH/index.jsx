@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User } from './User';
+import { Spinner } from '../Spinner';
 
 
 export function GetUser() {
@@ -43,6 +44,3 @@ function FetchUser({ id }) {
 
 }
 
-function Spinner() {
-  return <div><progress></progress></div>;
-}
