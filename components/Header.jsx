@@ -12,6 +12,7 @@ const
     { href: '/calendar', name: 'Calendar' },
     { href: '/fetcher', name: 'Fetcher' },
     { href: '/obj-table', name: 'ObjTable' },
+    { href: '/modification', name: 'optimistic UI' },
   ]
 
 export function Header() {
