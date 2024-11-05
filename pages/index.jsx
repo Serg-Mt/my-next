@@ -1,4 +1,5 @@
 import Head from "next/head";
+import toast from 'react-hot-toast';
 
 export default function Home() {
   return <>
@@ -10,6 +11,16 @@ export default function Home() {
     </Head>
     <main>
       Hello NextJS!
+      <button onClick={()=>toast('Here is your toast.')}>test react-hot-toast</button>
+      <button 
+      onClick={()=>
+      {const 
+        promise = fetch('https://jsonplaceholder.typicode.com/users?'+Math.random); 
+        toast.promise(promise,{
+          loading: 'Loading',
+          success: 'Got the data',
+          error: 'Error when fetching',
+        })}}>test toast promise</button>
     </main>
   </>;
 }

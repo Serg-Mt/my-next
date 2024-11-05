@@ -51,7 +51,8 @@ export const jsphColumns = [
 function Test1() {
   const
     [users, setUsers] = useState(null),
-    [selected, setSelected] = useState(null);
+    [selected, setSelected] = useState(null),
+    columns = [{ title: '', content: user => String(user.id) == selected ? '✔' : '' }].concat(jsphColumns);
   return <fieldset onClick={event => {
     const
       id = event.target.closest('tbody tr[data-id]')?.dataset?.id;
@@ -64,7 +65,7 @@ function Test1() {
       url="https://jsonplaceholder.typicode.com/users"
       setData={setUsers}
     >
-      <ObjTable data={users} columns={jsphColumns} />
+      <ObjTable data={users} columns={columns} />
     </Fetcher>
   </fieldset>
 }
