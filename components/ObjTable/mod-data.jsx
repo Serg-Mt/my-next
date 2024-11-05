@@ -2,6 +2,7 @@ import useSWR from 'swr';
 import { ObjTable } from '.';
 import { jsphColumns } from './test';
 import toast from 'react-hot-toast';
+import { useState } from 'react';
 
 
 export function ServerModificationDemo() {
@@ -26,9 +27,11 @@ const
   });
 
 
+
 function Main() {
   const
     { data, error, isLoading, isValidating, mutate } = useSWR(API_URL, fetcher),
+    [values, setValues] = useState(Array.from({ length: columns.length }, () => '')),
     onClick = async event => {
       const
         id = event.target.closest('[data-id')?.dataset?.id,
@@ -49,7 +52,29 @@ function Main() {
                     throw (new Error(res.status + ' ' + res.statusText));
                   }
                 });
+            case 'ok':
+              console.log('action ok');
+              const
+                newObj = { id: Math.random(), address: { geo: {} } };
+              columns.forEach(({ setData }, index) => {
 
+                if (setData) {
+                  // console.log('',index,setData);
+                  Object.assign(newObj, setData(values[index]))
+                }
+              });
+              optimisticData = data.concat(newObj);
+              return fetch(API_URL,
+                {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(newObj)
+                })
+                .then(async res => {
+                  if (!res.ok) {
+                    throw (new Error(res.status + ' ' + res.statusText));
+                  }
+                });
           }
 
         },
@@ -64,7 +89,22 @@ function Main() {
       }
 
 
-    };
+    },
+    form = <tr>
+      {columns.map(({ title, setData }, index) => <td key={title}>
+        {title === 'actions'
+          ? <>
+            <button data-action='ok'>🆗</button>
+            <button data-action='cancel' onClick={() => setValues(Array.from({ length: columns.length }, () => ''))}>✖️</button>
+          </>
+          : (setData
+            ? <input
+              value={values[index]}
+              onInput={() => setValues(prev => prev.with(index, event.target.value))} />
+            : ''
+          )}
+      </td>)}
+    </tr>;
   return <>
     <div style={{ position: 'absolute', fontSize: 'xxx-large' }}>
       {isLoading && <>⌛</>}
@@ -72,7 +112,9 @@ function Main() {
     </div>
     {error && <div className='error'> ERROR {error.toString()}</div >}
     <div onClick={onClick}>
-      {data && <ObjTable data={data} columns={columns} />}
+      {data && <ObjTable data={data} columns={columns}>
+        {form}
+      </ObjTable>}
     </div>
 
   </>

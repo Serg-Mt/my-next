@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function ObjTable({ data, columns }) {
+export function ObjTable({ data, columns, children }) {
   const
     [search, setSearch] = useState(''),
     filteredData = data.filter(obj => {
@@ -16,13 +16,15 @@ export function ObjTable({ data, columns }) {
     })
   return <>
     <input type="search" value={search} onInput={ev => setSearch(ev.target.value)} />
-    <SimpleTable data={filteredData} columns={columns} />
+    <SimpleTable data={filteredData} columns={columns}>
+      {children}
+    </SimpleTable>
   </>
 }
 
 
 
-function SimpleTable({ data, columns }) {
+function SimpleTable({ data, columns, children }) {
   return <table>
     <thead>
       <tr>
@@ -33,8 +35,9 @@ function SimpleTable({ data, columns }) {
       {data.map(obj => <tr key={obj.id} data-id={obj.id}>
         {columns.map(({ title, content }) => <td key={title}>
           {content(obj)}
-        </td>)}
+        </td>)}       
       </tr>)}
+      {children}
     </tbody>
   </table>;
 }
